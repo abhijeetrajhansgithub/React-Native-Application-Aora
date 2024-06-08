@@ -2,12 +2,20 @@ import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image } from "react-n
 import React, { useState } from "react";
 import { images } from "../../constants";
 import FormField from "../../components/FormField";
+import CustomButton from "../../components/CustomButton"
+
+const submit = () => {
+
+}
 
 const SignIn = () => {
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
+
+    const [submitting, setSubmitting] = useState(false)
+
   return (
     <>
         <SafeAreaView style={styles.SafeAreaView}>
@@ -31,6 +39,13 @@ const SignIn = () => {
                         value={form.password}
                         handleChangeText={(e) => setForm({...form, password: e})}
                         style={styles.FormField}
+                        />
+
+                    <CustomButton
+                        title="Sign In"
+                        style={styles.button}
+                        handlePress={submit}
+                        isLoading={submitting}
                         />
                 </View>
             </ScrollView>
@@ -69,5 +84,5 @@ const styles = StyleSheet.create({
   },
   FormField: {
     marginTop: 7
-  }
+  },
 })
